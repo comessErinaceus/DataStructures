@@ -2,14 +2,30 @@
 
 ## Imports
 import random
-# import plotext as plt
-# import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
+import time
 
 
 ## GLOBAL VARS
 #spacer = ("#----------###----------#\n")
 NUM_ARRAY_DRAWS = random.randint(1 , 6)
 RAND_PICKS = []
+BIG_ARRAY = []
+BIGGER_ARRAY = []
+
+BIG_ARRAY_INSERT_TIMES = []
+BIG_ARRAY_SEARCH_TIMES = []
+
+BIG_ARRAY_SIZE = 10000
+
+
+
+BIGGER_ARRAY_SIZE = 100000
+BIGGER_ARRAY_INSERT_TIMES = []
+BIGGER_ARRAY_SEARCH_TIMES = []
 
 
 ## DEFINE py functions
@@ -32,6 +48,43 @@ def print_arr_rand_index(arr, picks):
         print("At index: ",rand_index, mod_arr,"Array Address: ",id(mod_arr),"\n")
 
         picks.append(rand_index)
+
+
+def time_arr_access(arr, relv_times):
+# pick rand index
+    index = random.randint(0, len(arr)-1)
+    # Start the clock
+    start_time = time.time()
+    item = arr[index]
+    stop_time = time.time()
+
+    # get diff in times
+    time_diff = stop_time - start_time
+
+    # record elapsed time to the relevant array
+    relv_times.append(time_diff)
+
+def time_arr_insert_replace(arr, relv_times):
+# pick rand index
+    index = random.randint(0, len(arr))
+    # Start the clock
+    start_time = time.time()
+    arr.insert(index, 5)
+    stop_time = time.time()
+
+    # get diff in times
+    time_diff = stop_time - start_time
+
+    # record elapsed time to the relevant array
+    relv_times.append(time_diff)
+
+def plot_data(data_arr):
+    x = np.linspace(0, 2*np.pi, 200)
+    y = np.sin(x)
+
+    fig, ax = plt.subplots()
+    ax.plot(x,y)
+    plt.show
     
     
 
@@ -67,6 +120,7 @@ add_space()
 ## Can be used as Queues: FIFO
 ## Can be used as Stacks: LIFO
 
+# Set up some charts
 
 ## TO-DO Use plotly to plot the time complexity of arrays -- pattern will only emerge with large enough data sets
 # Sample sin wave
@@ -76,6 +130,52 @@ add_space()
 # plt.plot(x,y)
 
 # plt.show()
+
+## Assign numbers randomly 0 -9; 10,000 times BIG_ARRAY
+for i in range(BIG_ARRAY_SIZE-1):
+    BIG_ARRAY.append(random.randint(0,9))
+# print(BIG_ARRAY)
+
+# Testing with the BIG array
+# How long does it take to search for an item in the Big Array? 100 times
+for x in range(10000):
+    time_arr_access(BIG_ARRAY, BIG_ARRAY_SEARCH_TIMES)
+
+for x in range(10000):
+    time_arr_insert_replace(BIG_ARRAY, BIG_ARRAY_INSERT_TIMES)
+
+# How long does it take to insert an item in the BIG Array?
+
+# print collected data
+    # print(BIG_ARRAY_SEARCH_TIMES)
+# plot collected data
+plot_data(BIG_ARRAY_SEARCH_TIMES)
+plot_data(BIG_ARRAY_INSERT_TIMES)
+
+# Clean up the BIG array
+BIG_ARRAY = []
+
+## Assign randomly 0 -9; 100,000 times BIGGER_ARRAY
+for i in range(BIGGER_ARRAY_SIZE-1):
+    BIGGER_ARRAY.append(random.randint(0,9))
+#print(BIGGER_ARRAY)
+
+# Testing with the Bigger array
+for x in range(10000):
+    time_arr_access(BIGGER_ARRAY, BIGGER_ARRAY_SEARCH_TIMES)
+
+for x in range(10000):
+    time_arr_insert_replace(BIGGER_ARRAY, BIGGER_ARRAY_INSERT_TIMES)
+
+
+## Plot the data
+
+plot_data(BIGGER_ARRAY_SEARCH_TIMES)
+plot_data(BIGGER_ARRAY_INSERT_TIMES)
+
+
+# clean up the Bigger array
+
 
 
 ## Quick notes about array use
