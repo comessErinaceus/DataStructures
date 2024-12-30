@@ -2,6 +2,9 @@
 
 ## Imports
 import random
+# import plotext as plt
+# import numpy as np
+
 
 ## GLOBAL VARS
 #spacer = ("#----------###----------#\n")
@@ -50,6 +53,30 @@ for x in range(NUM_ARRAY_DRAWS):
 
 add_space()
 
+# In python, a list could be an array and they are dynamic
+# Time Complexity chart
+
+##      Static Array    Dynamic Array(change size)
+## Access   O(1)                O(1)
+## Search   O(n)                O(n)
+## Insert   N/A                 O(n)
+## Append   N/A                 O(1)
+## Delete   N/A                 O(n)
+## Pop      N/A                 O(1)
+
+## Can be used as Queues: FIFO
+## Can be used as Stacks: LIFO
+
+
+## TO-DO Use plotly to plot the time complexity of arrays -- pattern will only emerge with large enough data sets
+# Sample sin wave
+# x = np.linspace(0, 10, 100)
+# y = np.sin(x)
+
+# plt.plot(x,y)
+
+# plt.show()
+
 
 ## Quick notes about array use
 #### Sequential data
@@ -59,5 +86,8 @@ add_space()
 #### Return mult vals from function
 #### cache answers to sub-problems
 #### in python use tuple for lists that don't need or should not be modified
+
+
+
 
 
