@@ -3,6 +3,9 @@ Python implementation of data structures
 Use a python virtual env
     python3 -m venv venv
 
+    activate: ./venv/Scripts/activate
+    deactivate: 
+
 check your python packages
     pip freeze
     pip list

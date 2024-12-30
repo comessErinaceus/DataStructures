@@ -2,9 +2,7 @@
 
 ## Imports
 import random
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 import numpy as np
 import time
 
@@ -78,13 +76,18 @@ def time_arr_insert_replace(arr, relv_times):
     # record elapsed time to the relevant array
     relv_times.append(time_diff)
 
-def plot_data(data_arr):
-    x = np.linspace(0, 2*np.pi, 200)
-    y = np.sin(x)
+def plot_data(data_arr, title):
+    #x_values = [0,1,2,3]
+    #y_values = [5,6,7,8]
+
+    #plt.plot(x_values, y_values)
+    # x = np.linspace(0, 2*np.pi, 200)
+    # y = np.sin(x)
 
     fig, ax = plt.subplots()
-    ax.plot(x,y)
-    plt.show
+    ax.plot(data_arr)
+    plt.title(title)
+
     
     
 
@@ -122,15 +125,6 @@ add_space()
 
 # Set up some charts
 
-## TO-DO Use plotly to plot the time complexity of arrays -- pattern will only emerge with large enough data sets
-# Sample sin wave
-# x = np.linspace(0, 10, 100)
-# y = np.sin(x)
-
-# plt.plot(x,y)
-
-# plt.show()
-
 ## Assign numbers randomly 0 -9; 10,000 times BIG_ARRAY
 for i in range(BIG_ARRAY_SIZE-1):
     BIG_ARRAY.append(random.randint(0,9))
@@ -149,8 +143,8 @@ for x in range(10000):
 # print collected data
     # print(BIG_ARRAY_SEARCH_TIMES)
 # plot collected data
-plot_data(BIG_ARRAY_SEARCH_TIMES)
-plot_data(BIG_ARRAY_INSERT_TIMES)
+plot_data(BIG_ARRAY_SEARCH_TIMES, "Search 10,000")
+plot_data(BIG_ARRAY_INSERT_TIMES, "Insert 10,000")
 
 # Clean up the BIG array
 BIG_ARRAY = []
@@ -170,12 +164,15 @@ for x in range(10000):
 
 ## Plot the data
 
-plot_data(BIGGER_ARRAY_SEARCH_TIMES)
-plot_data(BIGGER_ARRAY_INSERT_TIMES)
+plot_data(BIGGER_ARRAY_SEARCH_TIMES, "Search 100,000")
+plot_data(BIGGER_ARRAY_INSERT_TIMES, "Insert 100,000")
 
 
 # clean up the Bigger array
 
+
+# Show the charts
+plt.show()
 
 
 ## Quick notes about array use
